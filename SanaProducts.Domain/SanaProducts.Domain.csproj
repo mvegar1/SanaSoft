@@ -4,4 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Entities\Order.cs~RFf072b0.TMP" />
+  </ItemGroup>
+
 </Project>
