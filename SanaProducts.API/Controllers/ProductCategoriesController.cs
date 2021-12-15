@@ -22,7 +22,8 @@ namespace SanaProducts.API.Controllers
         // GET: ProductCategories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ProductCategories.ToListAsync());
+            var sanaProductsDbContext = _context.ProductCategories.Include(p => p.Product);
+            return View(await sanaProductsDbContext.ToListAsync());
         }
 
         // GET: ProductCategories/Details/5
@@ -34,6 +35,7 @@ namespace SanaProducts.API.Controllers
             }
 
             var productCategory = await _context.ProductCategories
+                .Include(p => p.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (productCategory == null)
             {
@@ -46,6 +48,7 @@ namespace SanaProducts.API.Controllers
         // GET: ProductCategories/Create
         public IActionResult Create()
         {
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id");
             return View();
         }
 
@@ -62,6 +65,7 @@ namespace SanaProducts.API.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", productCategory.ProductId);
             return View(productCategory);
         }
 
@@ -78,6 +82,7 @@ namespace SanaProducts.API.Controllers
             {
                 return NotFound();
             }
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", productCategory.ProductId);
             return View(productCategory);
         }
 
@@ -113,6 +118,7 @@ namespace SanaProducts.API.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", productCategory.ProductId);
             return View(productCategory);
         }
 
@@ -125,6 +131,7 @@ namespace SanaProducts.API.Controllers
             }
 
             var productCategory = await _context.ProductCategories
+                .Include(p => p.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (productCategory == null)
             {

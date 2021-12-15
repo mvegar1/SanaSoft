@@ -22,7 +22,8 @@ namespace SanaProducts.API.Controllers
         // GET: CustomerDetails
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CustomerDetails.ToListAsync());
+            var sanaProductsDbContext = _context.CustomerDetails.Include(c => c.Customer);
+            return View(await sanaProductsDbContext.ToListAsync());
         }
 
         // GET: CustomerDetails/Details/5
@@ -34,6 +35,7 @@ namespace SanaProducts.API.Controllers
             }
 
             var customerDetail = await _context.CustomerDetails
+                .Include(c => c.Customer)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (customerDetail == null)
             {
@@ -46,6 +48,7 @@ namespace SanaProducts.API.Controllers
         // GET: CustomerDetails/Create
         public IActionResult Create()
         {
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id");
             return View();
         }
 
@@ -62,6 +65,7 @@ namespace SanaProducts.API.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", customerDetail.CustomerId);
             return View(customerDetail);
         }
 
@@ -78,6 +82,7 @@ namespace SanaProducts.API.Controllers
             {
                 return NotFound();
             }
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", customerDetail.CustomerId);
             return View(customerDetail);
         }
 
@@ -113,6 +118,7 @@ namespace SanaProducts.API.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", customerDetail.CustomerId);
             return View(customerDetail);
         }
 
@@ -125,6 +131,7 @@ namespace SanaProducts.API.Controllers
             }
 
             var customerDetail = await _context.CustomerDetails
+                .Include(c => c.Customer)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (customerDetail == null)
             {

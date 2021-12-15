@@ -22,7 +22,8 @@ namespace SanaProducts.API.Controllers
         // GET: ProductDetails
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ProductDetails.ToListAsync());
+            var sanaProductsDbContext = _context.ProductDetails.Include(p => p.Product);
+            return View(await sanaProductsDbContext.ToListAsync());
         }
 
         // GET: ProductDetails/Details/5
@@ -34,6 +35,7 @@ namespace SanaProducts.API.Controllers
             }
 
             var productDetail = await _context.ProductDetails
+                .Include(p => p.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (productDetail == null)
             {
@@ -46,6 +48,7 @@ namespace SanaProducts.API.Controllers
         // GET: ProductDetails/Create
         public IActionResult Create()
         {
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id");
             return View();
         }
 
@@ -62,6 +65,7 @@ namespace SanaProducts.API.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", productDetail.ProductId);
             return View(productDetail);
         }
 
@@ -78,6 +82,7 @@ namespace SanaProducts.API.Controllers
             {
                 return NotFound();
             }
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", productDetail.ProductId);
             return View(productDetail);
         }
 
@@ -113,6 +118,7 @@ namespace SanaProducts.API.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", productDetail.ProductId);
             return View(productDetail);
         }
 
@@ -125,6 +131,7 @@ namespace SanaProducts.API.Controllers
             }
 
             var productDetail = await _context.ProductDetails
+                .Include(p => p.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (productDetail == null)
             {
