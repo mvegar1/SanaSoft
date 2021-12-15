@@ -64,17 +64,19 @@ namespace SanaProducts.Data.Data
 
             var productCategories = new MSProductCategory[]
             {
-                new MSProductCategory{ProductId=1, CategoryId=1 },
-                new MSProductCategory{ProductId=2, CategoryId=2 },
-                new MSProductCategory{ProductId=3, CategoryId=7 },
+                new MSProductCategory{ProductId=7, CategoryId=3 },
+                new MSProductCategory{ProductId=7, CategoryId=7 },
+                new MSProductCategory{ProductId=7, CategoryId=10 },
+                new MSProductCategory{ProductId=6, CategoryId=13 },
+                new MSProductCategory{ProductId=6, CategoryId=14 },
+                new MSProductCategory{ProductId=5, CategoryId=4 },
+                new MSProductCategory{ProductId=5, CategoryId=12 },
+                new MSProductCategory{ProductId=5, CategoryId=11 },
                 new MSProductCategory{ProductId=4, CategoryId=6 },
-                new MSProductCategory{ProductId=3, CategoryId=11 },
-                new MSProductCategory{ProductId=3, CategoryId=12 },
-                new MSProductCategory{ProductId=2, CategoryId=13 },
-                new MSProductCategory{ProductId=2, CategoryId=14 },
-                new MSProductCategory{ProductId=1, CategoryId=3 },
-                new MSProductCategory{ProductId=1, CategoryId=7 },
-                new MSProductCategory{ProductId=1, CategoryId=10 }
+                new MSProductCategory{ProductId=3, CategoryId=7 },
+                new MSProductCategory{ProductId=3, CategoryId=9 },
+                new MSProductCategory{ProductId=2, CategoryId=2 },
+                new MSProductCategory{ProductId=1, CategoryId=1 }
             };
             foreach (MSProductCategory pc in productCategories)
             {

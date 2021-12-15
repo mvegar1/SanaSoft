@@ -16,15 +16,19 @@
     </h3>
     <p>Development</p>
     <p>
-        1. Create a product @Html.ActionLink("here!", "Create", "Products")
+        <b>1.1</b> Create a product Memory Storage @Html.ActionLink("here!", "Create", "MSProducts")<br />
+        <b>1.2</b> Create a product Persistent Storage @Html.ActionLink("here!", "Create", "Products")
         <br />
         <i><b>Important!</b> Make your new product look even more awesome by adding some details about it.</i>
     </p>
     <p>
-        2. List the products @Html.ActionLink("here!", "Index", "Products")
+        <b>2.1</b> List the products Memory Storage @Html.ActionLink("here!", "Index", "MSProducts")<br />
+        <b>2.2</b> List the products Persistent Storage @Html.ActionLink("here!", "Index", "Products")
         <br />
         <i><b>Important!</b> Take a look at your products details, edit, update or delete them by clicking @Html.ActionLink("here!", "Index", "ProductDetails")</i>
     </p>
     <h3 class="redColor">Plus!</h3>
     <p>Get access to the extra functionalities in the top menu.</p>
+    <h3 class="redColor">IMPORTANT!</h3>
+    <p>Remember to change the value of <b>ConnectionStrings</b> from the json file (appsettings.json) with your SQL Server Instance.<br>The site will automatically create the database in your local server.</p>
 </div>
