@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5BD80D9E-6C15-4D77-8492-54B2FB2A9CD3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanaProducts.APIRest", "SanaProducts.APIRest\SanaProducts.APIRest.csproj", "{F56DCE35-FDBC-4C9F-ABCC-114D04A110B1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanaProducts.Infraestructure", "SanaProducts.Infraestructure\SanaProducts.Infraestructure.csproj", "{C4C679F9-661E-47BC-8E0F-D91328E1F42A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanaProducts.Domain", "SanaProducts.Domain\SanaProducts.Domain.csproj", "{BB28FCC0-94F4-4B8E-9405-6DA0F9CD5A17}"
@@ -23,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F56DCE35-FDBC-4C9F-ABCC-114D04A110B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F56DCE35-FDBC-4C9F-ABCC-114D04A110B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F56DCE35-FDBC-4C9F-ABCC-114D04A110B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F56DCE35-FDBC-4C9F-ABCC-114D04A110B1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C4C679F9-661E-47BC-8E0F-D91328E1F42A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C4C679F9-661E-47BC-8E0F-D91328E1F42A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4C679F9-661E-47BC-8E0F-D91328E1F42A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -52,7 +46,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F56DCE35-FDBC-4C9F-ABCC-114D04A110B1} = {5BD80D9E-6C15-4D77-8492-54B2FB2A9CD3}
 		{C4C679F9-661E-47BC-8E0F-D91328E1F42A} = {5BD80D9E-6C15-4D77-8492-54B2FB2A9CD3}
 		{BB28FCC0-94F4-4B8E-9405-6DA0F9CD5A17} = {5BD80D9E-6C15-4D77-8492-54B2FB2A9CD3}
 		{121B8E17-F463-4A24-80E5-FBA12CBCE396} = {5BD80D9E-6C15-4D77-8492-54B2FB2A9CD3}

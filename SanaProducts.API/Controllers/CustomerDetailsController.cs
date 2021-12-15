@@ -48,7 +48,8 @@ namespace SanaProducts.API.Controllers
         // GET: CustomerDetails/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id");
+            var sanaProductsDbContext = _context.Customers;
+            ViewData["CustomerId"] = new SelectList(sanaProductsDbContext, "Id", "Name");
             return View();
         }
 
@@ -65,7 +66,7 @@ namespace SanaProducts.API.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", customerDetail.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", customerDetail.CustomerId);
             return View(customerDetail);
         }
 
@@ -82,7 +83,7 @@ namespace SanaProducts.API.Controllers
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", customerDetail.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", customerDetail.CustomerId);
             return View(customerDetail);
         }
 
@@ -118,7 +119,7 @@ namespace SanaProducts.API.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", customerDetail.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", customerDetail.CustomerId);
             return View(customerDetail);
         }
 

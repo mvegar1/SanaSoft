@@ -48,7 +48,7 @@ namespace SanaProducts.API.Controllers
         // GET: ProductDetails/Create
         public IActionResult Create()
         {
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id");
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace SanaProducts.API.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", productDetail.ProductId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", productDetail.ProductId);
             return View(productDetail);
         }
 
@@ -82,7 +82,7 @@ namespace SanaProducts.API.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", productDetail.ProductId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", productDetail.ProductId);
             return View(productDetail);
         }
 
@@ -118,7 +118,7 @@ namespace SanaProducts.API.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", productDetail.ProductId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", productDetail.ProductId);
             return View(productDetail);
         }
 

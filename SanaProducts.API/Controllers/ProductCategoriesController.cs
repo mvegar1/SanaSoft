@@ -22,7 +22,7 @@ namespace SanaProducts.API.Controllers
         // GET: ProductCategories
         public async Task<IActionResult> Index()
         {
-            var sanaProductsDbContext = _context.ProductCategories.Include(p => p.Product);
+            var sanaProductsDbContext = _context.ProductCategories.Include(p => p.Product).Include(c => c.Category);
             return View(await sanaProductsDbContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace SanaProducts.API.Controllers
 
             var productCategory = await _context.ProductCategories
                 .Include(p => p.Product)
+                .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (productCategory == null)
             {
@@ -48,7 +49,8 @@ namespace SanaProducts.API.Controllers
         // GET: ProductCategories/Create
         public IActionResult Create()
         {
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id");
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
@@ -65,7 +67,8 @@ namespace SanaProducts.API.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", productCategory.ProductId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", productCategory.ProductId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", productCategory.CategoryId);
             return View(productCategory);
         }
 
@@ -82,7 +85,8 @@ namespace SanaProducts.API.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", productCategory.ProductId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", productCategory.ProductId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", productCategory.CategoryId);
             return View(productCategory);
         }
 
@@ -118,7 +122,8 @@ namespace SanaProducts.API.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", productCategory.ProductId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", productCategory.ProductId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", productCategory.CategoryId);
             return View(productCategory);
         }
 
@@ -132,6 +137,7 @@ namespace SanaProducts.API.Controllers
 
             var productCategory = await _context.ProductCategories
                 .Include(p => p.Product)
+                .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (productCategory == null)
             {

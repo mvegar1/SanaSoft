@@ -22,7 +22,8 @@ namespace SanaProducts.API.Controllers
         // GET: OrderDetails
         public async Task<IActionResult> Index()
         {
-            return View(await _context.OrderDetails.ToListAsync());
+            var sanaProductsDbContext = _context.OrderDetails.Include(o => o.Order).Include(o => o.Product);
+            return View(await sanaProductsDbContext.ToListAsync());
         }
 
         // GET: OrderDetails/Details/5
@@ -34,6 +35,8 @@ namespace SanaProducts.API.Controllers
             }
 
             var orderDetail = await _context.OrderDetails
+                .Include(o => o.Order)
+                .Include(o => o.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (orderDetail == null)
             {
@@ -46,6 +49,8 @@ namespace SanaProducts.API.Controllers
         // GET: OrderDetails/Create
         public IActionResult Create()
         {
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id");
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name");
             return View();
         }
 
@@ -62,6 +67,8 @@ namespace SanaProducts.API.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id", orderDetail.OrderId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", orderDetail.ProductId);
             return View(orderDetail);
         }
 
@@ -78,6 +85,8 @@ namespace SanaProducts.API.Controllers
             {
                 return NotFound();
             }
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id", orderDetail.OrderId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", orderDetail.ProductId);
             return View(orderDetail);
         }
 
@@ -113,6 +122,8 @@ namespace SanaProducts.API.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id", orderDetail.OrderId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", orderDetail.ProductId);
             return View(orderDetail);
         }
 
@@ -125,6 +136,8 @@ namespace SanaProducts.API.Controllers
             }
 
             var orderDetail = await _context.OrderDetails
+                .Include(o => o.Order)
+                .Include(o => o.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (orderDetail == null)
             {

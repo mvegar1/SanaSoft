@@ -28,10 +28,24 @@ namespace SanaProducts.API.Controllers
             return View();
         }
 
+        public IActionResult General()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public FileResult Download()
+        {
+            var fileName = $"MR_SanaProducts.xlsx";
+            var filepath = $"wwwroot/files/{fileName}";
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filepath);
+            return File(fileBytes, "application/x-msdownload", fileName);
         }
     }
 }
