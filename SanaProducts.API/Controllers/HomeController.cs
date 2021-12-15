@@ -33,6 +33,16 @@ namespace SanaProducts.API.Controllers
             return View();
         }
 
+        public IActionResult MemoryStorage()
+        {
+            return View();
+        }
+
+        public IActionResult PersistentStorage()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

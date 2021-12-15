@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SanaProducts.Application.Common.Interfaces;
 using SanaProducts.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,8 +10,7 @@ using System.Threading.Tasks;
 namespace SanaProducts.Infraestructure.Persistence
 {
     public class SanaProductsDbContext : DbContext
-    {
-        private readonly IDateTime _dateTime;
+    {        
         private readonly string _connectionString;
 
         public SanaProductsDbContext(string connectionString)
@@ -20,9 +18,9 @@ namespace SanaProducts.Infraestructure.Persistence
             _connectionString = connectionString;
         }
 
-        public SanaProductsDbContext(DbContextOptions<SanaProductsDbContext> options, IDateTime dateTime) : base(options)
+        public SanaProductsDbContext(DbContextOptions<SanaProductsDbContext> options) : base(options)
         {
-            _dateTime = dateTime;
+            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

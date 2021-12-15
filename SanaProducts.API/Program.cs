@@ -32,6 +32,9 @@ namespace SanaProducts.API
                 {
                     var context = services.GetRequiredService<SanaProductsDbContext>();
                     DbInitializer.Initialize(context);
+
+                    var contextMS = services.GetRequiredService<SanaProductsMemoryContext>();
+                    DbInitializerMS.Initialize(contextMS);
                 }
                 catch (Exception ex)
                 {

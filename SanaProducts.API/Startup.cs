@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,7 +31,12 @@ namespace SanaProducts.API
             services.AddScoped<SanaProductsDbContext>(s => new SanaProductsDbContext(connectionString));
 
             services.AddDbContext<SanaProductsDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            {
+                options.UseSqlServer(connectionString);
+            });
+
+            services.AddMvc();
+            services.AddDbContext<SanaProductsMemoryContext>(context => { context.UseInMemoryDatabase("SanaProducts"); });
 
             services.AddControllersWithViews();
         }
